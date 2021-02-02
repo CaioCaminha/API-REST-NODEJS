@@ -1,0 +1,19 @@
+{
+  "name": "projeto-nodejs-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CaioCaminha/API-REST-NODEJS.git"
+  },
+  "author": "Caio Caminha",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CaioCaminha/API-REST-NODEJS/issues"
+  },
+  "homepage": "https://github.com/CaioCaminha/API-REST-NODEJS#readme"
+}
