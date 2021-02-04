@@ -36,10 +36,63 @@ class Atendimento{
                 if(erro){
                     res.status(400).json(erro)
                 }else{
-                    res.status(201).json(resultado)
+                    res.status(201).json(atendimento)
                 }
             })
         }
+    }
+
+    lista(res){
+        const sql = 'SELECT * FROM atendimentos'
+
+        conexao.query(sql, (erro, resultado) =>{
+            if(erro){
+                res.status(500).json(erro)
+            }else{
+                res.status(200).json(resultado)
+            }
+        })
+    }
+
+    buscarPorId(id, res){
+        const sql = `SELECT * FROM atendimentos WHERE id=${id}`
+
+        conexao.query(sql, (erro, resultados) => {
+            //para indicar o indice do array uso o id - 1 pois em JS começa com 0
+            const atendimento = resultados[0]
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json(atendimento)
+            }
+        })
+    }
+
+    altera(id, valores, res){
+        if(valores.data){
+            valores.data = moment(valores.data, 'DD/MM/YYYY').format('YYYY-MM-DD HH:MM:SS')
+        }
+        const sql = 'UPDATE atendimentos SET ? WHERE id = ?'
+
+        conexao.query(sql, [valores, id], (erro, resultado) => {
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json([...valores, id])
+            }
+        })
+    }
+
+    deleta(id, res){
+        const sql = 'DELETE FROM atendimentos WHERE id = ?'
+
+        conexao.query(sql, id, (erro, resultado) => {
+            if(erro){
+                res.status(400).json(erro)
+            }else{
+                res.status(200).json({id})
+            }
+        })
     }
 }
 
